@@ -2,7 +2,8 @@ import os
 import uuid
 import zipfile
 from fastapi import FastAPI, File, UploadFile, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 import aiofiles
 import requests
 import time
@@ -15,6 +16,14 @@ MAX_TOTAL_SIZE = 20 * 1024 * 1024  # 20 MB
 
 # Ensure the FILES_DIR exists
 os.makedirs(FILES_DIR, exist_ok=True)
+
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/")
+def read_index():
+    return FileResponse('static/index.html')
 
 
 @app.post("/upload")

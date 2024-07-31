@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EasyStorage</title>
+        <link rel="stylesheet" href="/static/styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">easystorage</div>
+        </header>
+        <main>
+            <div class="buttons">
+                <button id="uploadFileButton">Upload a file</button>
+                <button id="uploadFolderButton">Upload a folder (zip)</button>
+            </div>
+        </main>
+        <footer>Made by Gusarich with ❤️</footer>
+        <input type="file" id="fileInput" style="display: none" />
+        <input
+            type="file"
+            id="folderInput"
+            style="display: none"
+            webkitdirectory
+            directory
+        />
+        <script src="/static/main.js"></script>
+    </body>
+</html>

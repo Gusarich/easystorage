@@ -11,5 +11,8 @@ RUN pip install -r /app/requirements.txt
 # Copy the FastAPI app code into the container
 COPY ./app /app
 
+# Copy the static files into the container
+COPY ./static /app/static
+
 # Run the FastAPI app with Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
