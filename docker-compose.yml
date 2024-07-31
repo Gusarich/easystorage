@@ -17,8 +17,18 @@ services:
             context: .
             dockerfile: Dockerfile.fastapi
         ports:
-            - '80:80'
+            - '127.0.0.1:80:80'
         volumes:
             - ./files:/files
         depends_on:
             - tonutils-storage
+
+    reverse-proxy:
+        build:
+            context: .
+            dockerfile: Dockerfile.reverse-proxy
+        network_mode: 'host'
+        volumes:
+            - ./reverse-proxy-config:/reverse-proxy
+        depends_on:
+            - fastapi
