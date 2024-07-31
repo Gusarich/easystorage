@@ -58,17 +58,27 @@ function displayBagId(bagId) {
     bagIdContainer.style.display = 'block';
 
     bagIdElement.addEventListener('click', () => {
-        if (navigator.clipboard) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard
                 .writeText(bagId)
                 .then(() => {
-                    alert('BagID copied to clipboard');
+                    console.log('BagID copied to clipboard');
                 })
                 .catch((err) => {
-                    alert('Failed to copy BagID');
+                    console.error('Failed to copy BagID', err);
                 });
         } else {
-            alert('Clipboard API not supported');
+            const textArea = document.createElement('textarea');
+            textArea.value = bagId;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                console.log('BagID copied to clipboard');
+            } catch (err) {
+                console.error('Failed to copy BagID', err);
+            }
+            document.body.removeChild(textArea);
         }
     });
 }
