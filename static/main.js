@@ -21,7 +21,11 @@ document
                     body: formData,
                 });
                 const result = await response.json();
-                displayBagId(result.bag_id);
+                if (result.bag_id) {
+                    displayBagId(result.bag_id);
+                } else {
+                    alert('Error: BagID not found in response');
+                }
             } catch (error) {
                 alert('Error uploading file');
             }
@@ -38,12 +42,16 @@ document
             formData.append('file', file);
 
             try {
-                const response = await fetch('/upload-folder', {
+                const response = await fetch('/upload_folder', {
                     method: 'POST',
                     body: formData,
                 });
                 const result = await response.json();
-                displayBagId(result.bag_id);
+                if (result.bag_id) {
+                    displayBagId(result.bag_id);
+                } else {
+                    alert('Error: BagID not found in response');
+                }
             } catch (error) {
                 alert('Error uploading folder');
             }

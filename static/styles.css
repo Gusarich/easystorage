@@ -38,6 +38,10 @@ main {
     position: relative;
 }
 
+.footer-text {
+    margin-bottom: 50px; /* Add margin to the bottom */
+}
+
 .buttons {
     display: flex;
     flex-direction: column;
@@ -74,13 +78,4 @@ button:hover {
 .copy-instruction {
     font-size: 12px;
     color: #ccc;
-}
-
-footer {
-    padding: 20px;
-    position: fixed; /* Ensure the footer stays visible */
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    background-color: #1e2337; /* Same as body background to blend in */
 }

@@ -66,7 +66,7 @@ async def upload_file(description: str = Form(...), file: UploadFile = File(...)
                     status_code=500, detail=f"Error calling storage API: {e}")
 
 
-@app.post("/upload-folder")
+@app.post("/upload_folder")
 async def upload_folder(description: str = Form(...), file: UploadFile = File(...)):
     if file.size > MAX_TOTAL_SIZE:
         raise HTTPException(status_code=400, detail="File too large")
