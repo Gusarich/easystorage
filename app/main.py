@@ -1,7 +1,7 @@
 import os
 import uuid
 import zipfile
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 import aiofiles
@@ -27,7 +27,7 @@ def read_index():
 
 
 @app.post("/upload")
-async def upload_file(description: str, file: UploadFile = File(...)):
+async def upload_file(description: str = Form(...), file: UploadFile = File(...)):
     if file.size > MAX_TOTAL_SIZE:
         raise HTTPException(status_code=400, detail="File too large")
 
@@ -66,8 +66,8 @@ async def upload_file(description: str, file: UploadFile = File(...)):
                     status_code=500, detail=f"Error calling storage API: {e}")
 
 
-@app.post("/upload_folder")
-async def upload_folder(description: str, file: UploadFile = File(...)):
+@app.post("/upload-folder")
+async def upload_folder(description: str = Form(...), file: UploadFile = File(...)):
     if file.size > MAX_TOTAL_SIZE:
         raise HTTPException(status_code=400, detail="File too large")
 

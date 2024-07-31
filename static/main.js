@@ -12,7 +12,7 @@ document
         const file = event.target.files[0];
         if (file) {
             const formData = new FormData();
-            formData.append('description', 'Uploaded file');
+            formData.append('description', file.name); // Pass the filename as description
             formData.append('file', file);
 
             try {
@@ -21,7 +21,7 @@ document
                     body: formData,
                 });
                 const result = await response.json();
-                alert(`File uploaded successfully: ${JSON.stringify(result)}`);
+                displayBagId(result.bag_id);
             } catch (error) {
                 alert('Error uploading file');
             }
@@ -34,7 +34,7 @@ document
         const file = event.target.files[0];
         if (file) {
             const formData = new FormData();
-            formData.append('description', 'Uploaded folder');
+            formData.append('description', file.name); // Pass the filename as description
             formData.append('file', file);
 
             try {
@@ -43,11 +43,32 @@ document
                     body: formData,
                 });
                 const result = await response.json();
-                alert(
-                    `Folder uploaded successfully: ${JSON.stringify(result)}`
-                );
+                displayBagId(result.bag_id);
             } catch (error) {
                 alert('Error uploading folder');
             }
         }
     });
+
+function displayBagId(bagId) {
+    const bagIdContainer = document.getElementById('bagIdContainer');
+    const bagIdElement = document.getElementById('bagId');
+
+    bagIdElement.textContent = bagId;
+    bagIdContainer.style.display = 'block';
+
+    bagIdElement.addEventListener('click', () => {
+        if (navigator.clipboard) {
+            navigator.clipboard
+                .writeText(bagId)
+                .then(() => {
+                    alert('BagID copied to clipboard');
+                })
+                .catch((err) => {
+                    alert('Failed to copy BagID');
+                });
+        } else {
+            alert('Clipboard API not supported');
+        }
+    });
+}

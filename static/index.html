@@ -3,7 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>EasyStorage</title>
+        <title>easystorage</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="/static/styles.css" />
     </head>
     <body>
@@ -14,6 +18,14 @@
             <div class="buttons">
                 <button id="uploadFileButton">Upload a file</button>
                 <button id="uploadFolderButton">Upload a folder (zip)</button>
+            </div>
+            <div
+                id="bagIdContainer"
+                class="bag-id-container"
+                style="display: none"
+            >
+                <span id="bagId" class="bag-id"></span>
+                <span class="copy-instruction">Click to copy</span>
             </div>
         </main>
         <footer>Made by Gusarich with ❤️</footer>

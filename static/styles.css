@@ -1,8 +1,14 @@
+/* Hide scrollbars */
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     background-color: #1e2337;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     margin: 0;
+    overflow: hidden; /* Hide scrollbars */
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -20,6 +26,7 @@ header {
 .logo {
     font-weight: bold;
     font-size: 24px;
+    margin-left: 20px; /* Add margin to the left */
 }
 
 main {
@@ -27,12 +34,13 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px; /* Add more space between buttons */
 }
 
 button {
@@ -47,6 +55,24 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+
+.bag-id-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.bag-id {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy-instruction {
+    font-size: 12px;
+    color: #ccc;
 }
 
 footer {
